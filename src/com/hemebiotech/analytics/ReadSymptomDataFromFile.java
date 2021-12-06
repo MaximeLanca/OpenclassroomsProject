@@ -1,28 +1,30 @@
 package com.hemebiotech.analytics;
-
+import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ReadSymptomDataFromFile  {
+public class readSymptomDataFromFile  {
 
 
-	public void PrintSymptoms(String File, String Line) {
+	public ArrayList<String> printSymptoms(String file, ArrayList<String> listSymptoms) {
 		
 			try {
-				BufferedReader reader = new BufferedReader (new FileReader(File));
+				BufferedReader reader = new BufferedReader (new FileReader(file));
 				
-				while (reader.readLine() != null) {
-					Line = reader.readLine();
-					System.out.println(Line);
+				String line;
+				while((line=reader.readLine()) != null) {
+				listSymptoms.add(line);	
 				}
+				
+				reader.close();
 				
 			} catch (IOException e) {
 				System.out.println("An error occured.");
 				e.printStackTrace();
 			}
 			
+			return listSymptoms;
 		}
+			
 	}

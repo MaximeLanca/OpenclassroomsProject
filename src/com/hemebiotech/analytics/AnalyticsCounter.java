@@ -1,41 +1,37 @@
 package com.hemebiotech.analytics;
-import java.io.FileReader;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.TreeMap;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 
-public class AnalyticsCounter {
+public class analyticsCounter {
 	
-	public void Counter(String line) {
-		
-	int headacheCount = 0;
-	int rashCount = 0;
-	int pupilCount = 0;
+	public void counter(TreeMap<String, Integer> lineForNextClasstwo) throws IOException {
 
-	int i = 0;
-	int headCount = 0;
+				
+/*
+ * Create new file result.out
+ */
+		File file= new File("C:\\Users\\maxim\\eclipse-workspace\\results.out.txt");
 		
-	while (line != null) {
 			
-			i++;
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
-			}
-			else if (line.equals("rush")) {
-				rashCount++;
-			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
-
-			line = reader.readLine();	// get another symptom
-		}
 		
-		// next generate output
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
-	}
+		
+/*
+ * Write symptoms in the file
+ */	
+		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+		
+				for (Map.Entry<String, Integer> entry : lineForNextClasstwo.entrySet()) {
+				    
+				    writer.write("Symptoms:"+entry.getKey()+"."+" Occurences:"+entry.getValue()+".");
+				}
+				
+				writer.close();
+			}
+			
+			
 }

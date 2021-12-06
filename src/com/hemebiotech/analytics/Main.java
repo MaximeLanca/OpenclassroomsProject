@@ -1,50 +1,58 @@
 package com.hemebiotech.analytics;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		/**
 		 * String LineSymptoms is a variable for save "symptoms.txt"'s line
 		 */
-		String FileSymptoms = "C:\\Users\\maxim\\eclipse-workspace\\symptoms.txt";
-		String LineSymptoms = null;
-		
+		String fileSymptoms = "C:\\Users\\maxim\\eclipse-workspace\\symptoms.txt";
+		ArrayList <String> lineSymptoms;
+		lineSymptoms = new ArrayList <String>();
+		TreeMap<String, Integer> mapSymptomsForCounter=new TreeMap<>();
+	
+
 		try {
-			
 		/*
+		 * STEP_01
 		 * 	Class for to read file symptoms.txt
 		 */
-		ReadSymptomDataFromFile Read = new ReadSymptomDataFromFile();
-		Read.PrintSymptoms(FileSymptoms , LineSymptoms);
-		
+		readSymptomDataFromFile Read = new readSymptomDataFromFile();
+		Read.printSymptoms(fileSymptoms , lineSymptoms);
 		
 		/*
+		 * STEP_02
 		 * Use Map for explode line to exploit lines
 		 */
-		String LineForNextClassOne = LineSymptoms;
+		ArrayList<String> lineForNextClassOne = lineSymptoms;
+		treemapForSymptoms mapSymptoms = new treemapForSymptoms();
+		mapSymptomsForCounter=mapSymptoms.BigMap(lineForNextClassOne);
 		
-		HashmapForSymptoms MapSymptoms = new HashmapForSymptoms();
-		MapSymptoms.BigMap(LineForNextClassOne);
-		
-		String LineForNextClasstwo = LineForNextClassOne;
-		
-		/*
-		 * it's a class to exploit information from map
+		/*for (Map.Entry<String,Integer> m:mapSymptomsForCounter.entrySet()) {
+		 *System.out.println(m.getKey()+" "+m.getValue());
 		 */
-		AnalyticsCounter analyticsCounters = new AnalyticsCounter();
-		analyticsCounters.Counter(LineForNextClasstwo);
-		
-		System.out.println("LineSymptoms");
 		
 	
+
+		/*
+		 * STEP_03
+		 * it's a class to exploit information from map
+		*/
+		TreeMap<String,Integer> lineForNextClasstwo = mapSymptomsForCounter;
+		analyticsCounter analyticsCounters = new analyticsCounter();
+		analyticsCounters.counter(lineForNextClasstwo);
+
 		} catch (IndexOutOfBoundsException e) {
 			System.err.println("Caught IndexOutOfBoundsException: "
                     +  e.getMessage());
-                          
-                          
-			} finally {
+             } 
+		
+		finally {
 					System.out.println("Stop PrintWriter");
 	}
 		

@@ -1,5 +1,5 @@
 package com.hemebiotech.analytics;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +10,8 @@ import java.util.List;
  * The implementation does not need to order the list
  * 
  */
+
+
 public interface ISymptomReader {
 	/**
 	 * If no data is available, return an empty List
@@ -17,4 +19,18 @@ public interface ISymptomReader {
 	 * @return a raw listing of all Symptoms obtained from a data source, duplicates are possible/probable
 	 */
 	List<String> GetSymptoms ();
+	}
+
+
+
+
+/*
+public class NotNullArrayList extends ArrayList{
+	
+	public boolean add (Object o) {
+		if (o==null) throw new IllegalArgumentException("Cannot add null items to the list");
+		else return super.add(o);
+	}
 }
+	*/
+
